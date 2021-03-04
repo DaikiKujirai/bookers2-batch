@@ -1,0 +1,32 @@
+<table class='table'>
+  <tr><%= attachment_image_tag(user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.introduction %></th>
+  </tr>
+  <tr>
+    <th>follows</th>
+    <td><%= link_to "#{user.follower.count}", following_user_user_path(user) %></td>
+  </tr>
+  <tr>
+    <th>follower</th>
+    <td><%= link_to "#{user.followed.count}", follower_user_user_path(user) %></td>
+  </tr>
+</table>
+<div class='row'>
+  <% unless user == current_user %>
+    <% if current_user.following?(user) %>
+      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class:"btn btn-outline-success btn-sm btn-block rounded-pill" %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(user.id), method: :POST, class:"btn btn-success btn-sm btn-block rounded-pill" %>
+    <% end %>
+  <% end %>
+  <% if current_user != user %>
+    <%= link_to 'chatを始める', chat_path(user.id), class:"btn btn-primary btn-sm btn-block rounded-pill" %>
+  <% end %>
+  <%= link_to '',edit_user_path(user),class: "rounded-pill btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+</div>

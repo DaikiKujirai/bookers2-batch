@@ -1,0 +1,7 @@
+<div class="col-8 mt-5 d-flex flex-wrap">
+  <% @chats.each do |chat| %>
+  <ul id="chats">
+    <li><%= chat.message %></li>
+  </ul>
+  <% end %>
+</div>

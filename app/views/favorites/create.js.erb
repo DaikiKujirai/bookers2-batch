@@ -1,0 +1,2 @@
+$('#favorite<%= @book.id %>').html("<%= j(render partial: 'favorite', locals: {book: @book}) %>");
+ <!--<div id="favorite<%#= @book.id %>">を選択して、'favoriteの部分テンプレートに送っている-->
