@@ -11,4 +11,11 @@ class UserMailer < ApplicationMailer
     # この２行は必要
   end
 
+  def daily
+    @users = User.all
+    @users.each do |user|
+      UserMailer.new_registration_email(user).deliver
+    end
+  end
+
 end
